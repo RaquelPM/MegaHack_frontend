@@ -10,6 +10,7 @@
   "dependencies": {
     "bootstrap-vue": "^2.13.1",
     "core-js": "^3.6.4",
+    "momento": "^0.2.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6"
   },

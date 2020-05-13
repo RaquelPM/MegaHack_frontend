@@ -15,7 +15,7 @@
         </div>
         <div class ="flex-column w-50">
             <div v-for="review in results.reviews" :key="review">
-                <comment :user="review.author.username" :comentario="review.description" :grade="review.grade" :loja="review.formated_store[1]"/>
+                <comment :atual="self.username" :id="review.id" :user="review.author.username" :comentario="review.description" :grade="review.grade" :loja="review.formated_store[1]"/>
             </div>
             <div v-if="!results.reviews[0]">
                 <h4 class="mt-4 text-secondary">Não há nenhuma avaliação ainda, seja o primeiro :)</h4>

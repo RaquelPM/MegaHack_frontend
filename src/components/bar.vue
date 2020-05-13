@@ -1,6 +1,6 @@
 <template>
 <div>
-    <b-navbar id="navbar" class = " d-flex justify-content-center align-items-center ">  
+    <b-navbar id="navbar" class = " mt-2 d-flex justify-content-center align-items-center ">  
             <item tipo="Eletrodomésticos"> <b-icon-plug class="mr-1" ></b-icon-plug> </item>
             <item tipo="Televisões"> <b-icon-tv class="mr-2" ></b-icon-tv> </item>
             <item tipo="Consoles"> <b-icon-controller class="mr-2" ></b-icon-controller> </item>

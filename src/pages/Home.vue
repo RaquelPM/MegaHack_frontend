@@ -49,7 +49,7 @@
 import Nav from '@/components/Nav.vue'
 import bar from '@/components/bar.vue'
 import card from '@/components/card.vue'
-import { get_data } from '@/fetchs.js'
+import { get_data, get_data_with } from '@/fetchs.js'
 export default {
   name: 'App',
   components: {
@@ -89,7 +89,7 @@ export default {
         .catch(error=>alert(error.message))
     }
     if(localStorage.getItem('Token')){
-      get_data("users/self/")
+      get_data_with("users/self/")
         .then(resp=>{
         this.user=resp
         console.log(resp)

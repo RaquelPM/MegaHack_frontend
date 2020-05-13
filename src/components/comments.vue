@@ -12,11 +12,11 @@
                 </div>
             </div>
             <div class="w-50 posistion-fixed d-flex justify-content-end">
-                <b-icon-heart class = "mb-3 mr-3 pr-4" ></b-icon-heart>
+                <b-icon-heart v-on:click="like" class = "mb-3 mr-3 pr-4" ></b-icon-heart>
             </div>
         </div>
-        <p class="text-justify mx-3">{{comentario}}</p>
-        <div class="w-100 d-flex justify-content-end">
+        <p class="text-justify mx-3 pb-1">{{comentario}}</p>
+        <div v-if="user!=atual" class="w-100 d-flex justify-content-end">
             <b-button v-on:click="ir_pedir" id="pedir" class="mb-3 mr-3 px- font-weight-bold border bg-transparent" size="sm">Fale com {{user}}</b-button>
         </div>
 
@@ -39,11 +39,30 @@ export default{
         comentario:String,
         grade:Number,
         loja:Array,
+        id:Number,
+        atual:String,
     },
     methods:{
         ir_pedir(){
             router.push({name:'others_perfil'})
             localStorage.setItem('User', this.user)
+        },
+        like(event){
+            event.preventDefault();
+                fetch('http://127.0.0.1:8000/reviews/'+ this.id +'/like/',{
+                    method: "POST",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "Authorization": `Token ${localStorage.getItem('Token')}`
+                    },
+                })
+                .then(resp=> resp.json())
+                .then(resp=> {
+                   console.log(resp);
+                })
+                .catch(error => {
+                    alert(error.message);
+                })
         }
     }
 }

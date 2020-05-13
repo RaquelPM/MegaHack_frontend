@@ -54,7 +54,7 @@ import {
     BIconHeartFill,
     BIconCheckCircle,
 } from 'bootstrap-vue'
-import { get_data } from '@/fetchs.js'
+import { get_data, get_data_with} from '@/fetchs.js'
 
     export default{
         components:{
@@ -89,7 +89,7 @@ import { get_data } from '@/fetchs.js'
             .catch(error=>alert(error.message))
 
             if(localStorage.getItem('Token')){
-                get_data("users/self/")
+                get_data_with("users/self/")
                     .then(resp=>{
                     this.self=resp
                     })

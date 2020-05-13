@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import router from '@/routes'
+
 export default{
     name:'NavItem',
     props:{
@@ -29,12 +31,17 @@ export default{
             this.cima=false;
         },
         armazenar(){
-            localStorage.setItem('Tipo', this.tipo);
-            window.location.reload();
+            if(this.tipo){
+                localStorage.setItem('Tipo', this.tipo);
+                window.location.reload();
+            }
+            else{
+                router.push({name:'Ranking'})
+            }
         }
     },
     created(){
-        if(localStorage.getItem('Tipo')==this.tipo){this.ta=true}
+        if(this.tipo && localStorage.getItem('Tipo')==this.tipo){this.ta=true}
     }
 }
 

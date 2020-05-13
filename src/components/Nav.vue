@@ -1,13 +1,13 @@
 <template>
   <div class="d-flex flex-column">
     <b-navbar id="navbar" class = "fixed-top">  
-      <div v-if="!logado" class = "w-75 d-flex">
-        <b-button id="button" v-b-toggle.sidebar-cadastro class="bg-white font-weight-bold px-4 border-0 ml-4" >Cadastre-se</b-button>
-        <b-button v-b-toggle.sidebar-login class="bg-transparent text-white font-weight-bold ml-2 border-0 px-4">Login</b-button>
-      </div>
-      <div v-if="logado" class="d-flex align-items-center mb-1">
+      <div v-if="logado" class="d-flex align-items-center">
         <b-avatar  class="ml-3" size="3rem "></b-avatar>
         <h4 id="nome" v-on:click="ir_perfil" class="text-white mt-2 font-weight-bold ml-2">{{user}}</h4>
+      </div>
+      <div v-if="!logado"  class = "w-75 d-flex">
+        <b-button id="button" v-b-toggle.sidebar-cadastro class="bg-white font-weight-bold px-4 border-0 ml-4" >Cadastre-se</b-button>
+        <b-button v-b-toggle.sidebar-login class="bg-transparent text-white font-weight-bold ml-2 border-0 px-4">Login</b-button>
       </div>
       <div class="w-100 justify-content-end d-flex">
         <img v-on:click="home" class="mr-3" width="85" src="@/static/Ativo 3.png">
@@ -17,6 +17,7 @@
     <b-sidebar id="sidebar-login" shadow>
       <h1 class="font-weight-bold justify-content-star d-flex pt-2 pb-1 ml-4 " id="title_login">Login</h1>
       <div class="px-1 py-2 mx-2 border border-primary border-left-0 border-right-0 border-bottom-0">
+        <h5 v-if="errou" class="text-danger">Username ou senha incorretos</h5>
         <form class="px-2 mt-3" id="login_form" @submit="logar">
           <input
           placeholder="Usuário"
@@ -132,6 +133,9 @@ export default {
     user:String,
     premium:Boolean,
   },
+  created(){
+    localStorage.clear();
+  },
   methods:{
     logar(event){
      event.preventDefault();
@@ -149,11 +153,13 @@ export default {
 
         .then(resp=> resp.json())
         .then(resp=> {
+            console.log(resp)
             localStorage.setItem('Token', resp.token);
             console.log(localStorage.getItem('Token'))
+            if(localStorage.getItem('Token')){window.location.reload()}
         })
         .catch(error => {
-              console.log(error);
+            alert(error);
         })
     },
     cadastrar(event){
@@ -209,7 +215,6 @@ export default {
           .then(resp=> resp.json())
           .then(resp=> {
               console.log(resp);
-              //router.replace({name: "inicio"}); 
           })
           .catch(error => {
               console.log(error.message);
