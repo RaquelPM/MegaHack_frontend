@@ -22,9 +22,9 @@
                 </div>
             </div>
             <div v-if="pode" class="w-100 d-flex flex-column">
-                <b-form @submit="avaliar">
-                    <b-input v-model="grade" required type="number" placeholder="Nota"></b-input> 
-                    <div class="d-flex mt-2 justify-content-end">
+                <b-form @submit="avaliar" class="d-flex align-items-center w-100 flex-column">
+                    <v-rating color="#FFD700" half-increments hover v-model="grade" size="35px" class="ml-2"></v-rating>
+                    <div class="d-flex mt-2 w-100 justify-content-end">
                         <b-button id="check" type="submit" size="sm"><b-icon-check-circle ></b-icon-check-circle></b-button>
                     </div>
                 </b-form>

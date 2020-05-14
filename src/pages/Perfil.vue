@@ -12,10 +12,7 @@
                     <b-icon-star-fill v-if="self.profile.is_premium" variant="warning" class="ml-2" id="estrelaa" ></b-icon-star-fill>
                 </div>
                 <h4 class="text-secondary ml-3" >{{self.profile.points}} pontos</h4>
-                <div class="d-flex">
-                    <h4 class="text-secondary ml-3 mr-2" >{{self.profile.score}}</h4>
-                    <b-icon-heart-fill id="cora" variant="danger" ></b-icon-heart-fill>
-                </div>
+                <v-rating color="#FFD700" empty-icon="" :value="self.profile.score" half-increments size="30px" class="ml-1" readonly="true" ></v-rating>
         </div>
     </div>
     <div class="w-100 d-flex mt-2 d-flex justify-content-end">
@@ -44,7 +41,6 @@ import Nav from '@/components/Nav'
 import { get_data_with } from '@/fetchs'
 import {
     BIconStarFill,
-    BIconHeartFill,
    // BIconCheckCircle,
 } from 'bootstrap-vue'
 import reviews from '@/components/reviews'
@@ -54,7 +50,6 @@ export default{
     components:{
         Nav,
         BIconStarFill,
-        BIconHeartFill,
         reviews,
         histviews,
     },

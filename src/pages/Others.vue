@@ -1,7 +1,7 @@
 <template>
 <div>
-    <Nav :user="self.username" />
-    <div id="top_perfil">
+    <Nav v-if="pesquisou" :user="self.username" />
+    <div v-if="pesquisou" id="top_perfil">
         <div class="w-100 mt-3 h-100 d-flex justify-content-star align-items-center">
             <b-avatar class="ml-3" size="9rem"></b-avatar>
             <div class="ml-1 flex-column align-items-start d-flex"> 
@@ -11,8 +11,7 @@
                 </div>
                 <h4 class="text-secondary ml-3" >{{user[0].profile.points}} pontos</h4>
                 <div class="d-flex">
-                    <h4 class="text-secondary ml-3 mr-2" >{{user[0].profile.score}}</h4>
-                    <b-icon-heart-fill id="cora" variant="danger" ></b-icon-heart-fill>
+                    <v-rating color="#FFD700" empty-icon="" :value="user[0].profile.score" half-increments size="30px" id="a" class="ml-2" readonly="true" ></v-rating>
                 </div>
             </div>
         </div>
@@ -51,7 +50,6 @@ import Nav from '@/components/Nav.vue'
 import reviews from '@/components/reviews.vue'
 import {
     BIconStarFill,
-    BIconHeartFill,
     BIconCheckCircle,
 } from 'bootstrap-vue'
 import { get_data, get_data_with} from '@/fetchs.js'
@@ -59,7 +57,6 @@ import { get_data, get_data_with} from '@/fetchs.js'
     export default{
         components:{
             BIconStarFill,
-            BIconHeartFill,
             Nav,
             reviews,
             BIconCheckCircle,
@@ -72,7 +69,9 @@ import { get_data, get_data_with} from '@/fetchs.js'
                 mouse:undefined,
                 logado:localStorage.getItem('Token'),
                 pro:'',
-                title:"Solicite um atendimento"
+                title:"Solicite um atendimento",
+                rating:1,
+                pesquisou:false
             }
         },
         created(){
@@ -92,6 +91,7 @@ import { get_data, get_data_with} from '@/fetchs.js'
                 get_data_with("users/self/")
                     .then(resp=>{
                     this.self=resp
+                    this.pesquisou=true;
                     })
                     .catch(error=>alert(error.message))
             }

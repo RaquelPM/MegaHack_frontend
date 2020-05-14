@@ -5,11 +5,13 @@ import './plugins/bootstrap-vue'
 import App from './App.vue'
 
 import router from './routes'
+import vuetify from './plugins/vuetify';
 
 
 Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
-  router,
+  vuetify,
+  router
 }).$mount('#app')

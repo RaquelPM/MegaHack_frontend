@@ -32,8 +32,8 @@
             <div v-if="logado" class="w-100 d-flex flex-column">
                 <b-form @submit="add_comment" >
                     <div class="d-flex">
-                    <b-select v-model="loja" class="mr-2 mb-2" required :options="lojas"></b-select>
-                    <b-input v-model="grade" required type="number" placeholder="Nota"></b-input> 
+                    <b-select v-model="loja" class="mr-2 mb-2 mt-1" required :options="lojas"></b-select>
+                    <v-rating color="#FFD700" half-increments hover v-model="grade" size="30px" class="ml-2"></v-rating>
                     </div>
                     <b-input v-model="description" type="text" class="py-4" id="comen" placeholder="Faça um comentário"></b-input>
                     <div class="d-flex mt-2 justify-content-end">

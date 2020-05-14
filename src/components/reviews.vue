@@ -6,10 +6,11 @@
                     <div class="d-flex">
                         <h3 class="mt-3 font-weight-bold">{{Produto}}</h3>
                         <div class="border d-flex ml-2 mt-3 px-1 align-items-center" id="baba">
-                            <h6 class=" text-secondary ml-1 mt-2 font-weight-bold">{{grade}}</h6>
-                            <b-icon-star id="estrelaaaa" variant="warning" class="ml-1 mt-2 mr-2"></b-icon-star>
-                            <h6 class=" text-secondary font-weight-bold mt-2" >{{likes}}</h6>
-                            <b-icon-heart id="corara" variant="danger" class="ml-1 mr-2 mt-2 mb-2" ></b-icon-heart>
+                            <v-rating color="#FFD700" :value="grade" half-increments size="20px" id="a" class="ml-2" readonly="true" ></v-rating>
+                            <div v-if="likes" class="d-flex mt-1">
+                                <h6 class=" text-secondary font-weight-bold mt-1" >{{likes}}</h6>
+                                <b-icon-heart-fill id="corara" variant="danger" class="ml-1 mr-2 mb-2" ></b-icon-heart-fill>
+                            </div>
                         </div>
                     </div>
                     <h6 class="text-secondary font-weight-bold">{{loja}}</h6>
@@ -22,7 +23,7 @@
 </template>
 
 <script>
-import { BIconStar, BIconHeart } from 'bootstrap-vue'
+import {  BIconHeartFill } from 'bootstrap-vue'
 export default{
     data(){
         return{
@@ -30,8 +31,7 @@ export default{
         }
     },
     components:{
-        BIconStar,
-        BIconHeart
+        BIconHeartFill
     },
     props:{
         Produto:String,
@@ -59,7 +59,7 @@ export default{
     }
     #corara{
         font-size:15px;
-        margin-top:5px
+        margin-top:6px
 
     }
     #baba{
