@@ -12,7 +12,9 @@
     "core-js": "^3.6.4",
     "momento": "^0.2.0",
     "vue": "^2.6.11",
-    "vue-router": "^3.1.6"
+    "vue-dynamic-star-rating": "^1.0.8",
+    "vue-router": "^3.1.6",
+    "vue-star-rating": "^1.6.1"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.7.0",

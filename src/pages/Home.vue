@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="flex-column">
-    <Nav :user="user.username"/>
-    <bar/>
-    <b-form class="d-flex my-2 justify-content-end w-100">
+    <Nav v-if="pesquisou" :user="user.username"/>
+    <bar v-if="pesquisou" />
+    <b-form v-if="pesquisou" class="d-flex my-2 justify-content-end w-100">
           <b-input
             class="w-25"
             v-model="nome"
@@ -11,7 +11,7 @@
           <b-form-select v-model="a" id="select" class="ml-2" :options="options"></b-form-select>
           <b-button size="sm" id="butun" v-on:click="pesquisar" class=" font-weight-bold border ml-2 mr-5">Buscar</b-button>
       </b-form>
-    <div class="d-flex ml-5">
+    <div v-if="pesquisou" class="d-flex ml-5">
         <card v-if="results[0]" :tipo="results[0].product_type" :name="results[0].name" :img="results[0].url_image"/>
         <card v-if="results[1]" :tipo="results[1].product_type" :name="results[1].name" :img="results[1].url_image"/>
         <card v-if="results[2]" :tipo="results[2].product_type" :name="results[2].name" :img="results[2].url_image"/>
@@ -41,7 +41,7 @@
       <card v-if="users[8]" :tipo="users[8].profile.points" :name="users[8].username" user="true"/>
       <card v-if="users[9]" :tipo="users[9].profile.points" :name="users[9].username" user="true"/>
     </div>
-    <h3 v-if="!results[0] && !users[0]" class="text-secondary mt-5"> Nenhum resultado encontrado :(</h3>
+    <h3 v-if="!results[0] && !users[0] && pesquisou" class="text-secondary mt-5"> Nenhum resultado encontrado :(</h3>
   </div>
 </template>
 
@@ -68,6 +68,7 @@ export default {
                   {value:'users', text:'Usuários'}
               ],
       user:{},
+      pesquisou:false,
     }
   },
   created(){
@@ -84,6 +85,7 @@ export default {
       get_data("products/", true)
         .then(resp=>{
           this.results=resp.results
+          this.pesquisou=true;
           console.log(this.results)
         })
         .catch(error=>alert(error.message))
@@ -92,6 +94,7 @@ export default {
       get_data_with("users/self/")
         .then(resp=>{
         this.user=resp
+        this.pesquisou=true;
         console.log(resp)
         })
         .catch(error=>alert(error.message))

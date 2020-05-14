@@ -5,9 +5,9 @@
                 <b-avatar size="3rem" class = "mx-2 my-2"></b-avatar>
                 <div class = "d-flex ml-1 flex-column align-items-start">
                     <h6 class="mt-4 font-weight-bold">{{user}}</h6>
-                    <div class="d-flex">
-                        <p id="loja" >{{loja}} - {{grade}} </p>
-                        <b-icon-star-fill id="estrelaaa" variant="warning" class="ml-1"></b-icon-star-fill>
+                    <div class="d-flex bg-info">
+                        <p id="loja" class="mr-2">{{loja}}</p>
+                        <star-rating star-size="20px" read-only show-rating="false" ></star-rating>
                     </div>
                 </div>
             </div>
@@ -25,22 +25,26 @@
 
 <script>
 import router from '@/routes'
-
 import { BIconHeart,
-         BIconStarFill,
     } from 'bootstrap-vue'
+import StarRating from 'vue-star-rating'
+
 export default{
     components:{
         BIconHeart,
-        BIconStarFill
+        StarRating,
     },
     props:{
         user:String,
         comentario:String,
-        grade:Number,
         loja:Array,
         id:Number,
         atual:String,
+    },
+    data(){
+        return{
+            rating:3,
+        }
     },
     methods:{
         ir_pedir(){

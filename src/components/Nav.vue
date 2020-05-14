@@ -1,16 +1,16 @@
 <template>
   <div class="d-flex flex-column">
-    <b-navbar id="navbar" class = "fixed-top">  
-      <div v-if="logado" class="d-flex align-items-center">
+    <b-navbar id="navbar" class = "fixed-top position-fixed">  
+      <div v-if="user" class="d-flex align-items-center">
         <b-avatar  class="ml-3" size="3rem "></b-avatar>
         <h4 id="nome" v-on:click="ir_perfil" class="text-white mt-2 font-weight-bold ml-2">{{user}}</h4>
       </div>
-      <div v-if="!logado"  class = "w-75 d-flex">
+      <div v-else  class = "w-75 d-flex">
         <b-button id="button" v-b-toggle.sidebar-cadastro class="bg-white font-weight-bold px-4 border-0 ml-4" >Cadastre-se</b-button>
         <b-button v-b-toggle.sidebar-login class="bg-transparent text-white font-weight-bold ml-2 border-0 px-4">Login</b-button>
       </div>
       <div class="w-100 justify-content-end d-flex">
-        <img v-on:click="home" class="mr-3" width="85" src="@/static/Ativo 3.png">
+        <img v-on:click="home" class="mr-3" width="70" src="@/static/Ativo 3.png">
       </div>
     </b-navbar>
 
@@ -153,7 +153,8 @@ export default {
             console.log(resp)
             localStorage.setItem('Token', resp.token);
             console.log(localStorage.getItem('Token'))
-            if(localStorage.getItem('Token')){window.location.reload()}
+            if(localStorage.getItem('Token') == 'undefined'){alert("Usuário ou senha incorretos")}
+            else{window.location.reload()}
         })
         .catch(error => {
             alert(error);

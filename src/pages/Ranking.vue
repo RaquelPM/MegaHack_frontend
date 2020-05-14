@@ -1,7 +1,7 @@
 <template>
 <div>
-    <Nav :user='user.username'/>
-    <div class="flex-column d-flex align-items-center pt-4 mx-3">
+    <Nav v-if="pesquisou" :user='user.username'/>
+    <div v-if="pesquisou" class="flex-column d-flex align-items-center pt-4 mx-3">
         <div id="vi" class="border w-100 mb-3">
             <h1 class="pb-2 font-weight-bold mt-2 text-white" >Ranking</h1>
         </div>
@@ -26,12 +26,14 @@ export default{
         return{
             user:{},
             users:{},
+            pesquisou:false,
         }
     },
     created(){
         get_data_with("users/self/")
         .then(resp=>{
         this.user=resp
+        this.pesquisou=true;
         console.log(resp)
         })
         .catch(error=>alert(error.message))
