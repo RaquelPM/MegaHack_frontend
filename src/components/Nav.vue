@@ -133,9 +133,6 @@ export default {
     user:String,
     premium:Boolean,
   },
-  created(){
-    localStorage.clear();
-  },
   methods:{
     logar(event){
      event.preventDefault();

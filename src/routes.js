@@ -12,7 +12,7 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/home',
+            path: '*',
             name: 'Home',
             component: Home,
         },
@@ -48,7 +48,7 @@ router.beforeEach((to,from,next) => {
 
     if (requeresAuth){
         if (!token){
-            next('/home');
+            next('*');
         }
         else{
             next();

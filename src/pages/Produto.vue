@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { get_data } from "@/fetchs"
+import { get_data, get_data_with } from "@/fetchs"
 import Nav from '@/components/Nav'
 import { BIconCheckCircle } from 'bootstrap-vue'
 import comment from '@/components/comments'
@@ -121,7 +121,7 @@ export default{
         .catch(error=>alert(error.message))
 
         if(localStorage.getItem('Token')){
-                get_data("users/self/")
+                get_data_with("users/self/")
                     .then(resp=>{
                     this.self=resp
                     })
