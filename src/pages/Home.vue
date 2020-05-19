@@ -53,14 +53,14 @@
 <script>
 import Nav from '@/components/Nav.vue'
 import bar from '@/components/bar.vue'
-import card from '@/components/card.vue'
+// import card from '@/components/card.vue'
 import { get_data, get_data_with } from '@/fetchs.js'
 export default {
   name: 'App',
   components: {
     Nav,
     bar,
-    card,
+    // card,
   },
   data(){
     return{

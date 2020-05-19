@@ -12,11 +12,6 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '*',
-            name: 'Home',
-            component: Home,
-        },
-        {
             path: '/verproduto',
             name:'Produto',
             component: Produto,
@@ -38,7 +33,12 @@ const router = new VueRouter({
             path:'/ranking',
             name: 'Ranking',
             component: Ranking
-        }
+        },
+        {
+            path: '',
+            name: 'Home',
+            component: Home,
+        },
     ]    
 })
 
