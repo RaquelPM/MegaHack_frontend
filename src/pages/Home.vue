@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="flex-column">
     <Nav v-if="pesquisou" :user="user.username"/>
-    <bar v-if="pesquisou" />
+    <bar v-if="pesquisou"  />
     <b-form v-if="pesquisou" class="d-flex my-2 justify-content-end w-100">
           <b-input
             class="w-25"
@@ -11,35 +11,40 @@
           <b-form-select v-model="a" id="select" class="ml-2" :options="options"></b-form-select>
           <b-button size="sm" id="butun" v-on:click="pesquisar" class=" font-weight-bold border ml-2 mr-5">Buscar</b-button>
       </b-form>
-    <div v-if="pesquisou" class="d-flex ml-5">
-        <card v-if="results[0]" :tipo="results[0].product_type" :name="results[0].name" :img="results[0].url_image"/>
-        <card v-if="results[1]" :tipo="results[1].product_type" :name="results[1].name" :img="results[1].url_image"/>
-        <card v-if="results[2]" :tipo="results[2].product_type" :name="results[2].name" :img="results[2].url_image"/>
-        <card v-if="results[3]" :tipo="results[3].product_type" :name="results[3].name" :img="results[3].url_image"/>
+    
+    <div class="d-flex flex-column align-items-center">
+      <div>
+        <div v-if="pesquisou" class="d-flex ml-5">
+            <card v-if="results[0]" :tipo="results[0].product_type" :name="results[0].name" :img="results[0].url_image"/>
+            <card v-if="results[1]" :tipo="results[1].product_type" :name="results[1].name" :img="results[1].url_image"/>
+            <card v-if="results[2]" :tipo="results[2].product_type" :name="results[2].name" :img="results[2].url_image"/>
+            <card v-if="results[3]" :tipo="results[3].product_type" :name="results[3].name" :img="results[3].url_image"/>
 
-        <card v-if="users[0]" :tipo="users[0].profile.points" :name="users[0].username" user="true"/>
-        <card v-if="users[1]" :tipo="users[1].profile.points" :name="users[1].username" user="true"/>
-        <card v-if="users[2]" :tipo="users[2].profile.points" :name="users[2].username" user="true"/>
-        <card v-if="users[3]" :tipo="users[3].profile.points" :name="users[3].username" user="true"/>
-    </div>
-    <div class="d-flex ml-5">
-      <card v-if="results[4]" :tipo="results[4].product_type" :name="results[4].name" :img="results[4].url_image"/>
-      <card v-if="results[5]" :tipo="results[5].product_type" :name="results[5].name" :img="results[5].url_image"/>
-      <card v-if="results[6]" :tipo="results[6].product_type" :name="results[6].name" :img="results[6].url_image"/>
-      <card v-if="results[7]" :tipo="results[7].product_type" :name="results[7].name" :img="results[7].url_image"/>
+            <card v-if="users[0]" :tipo="users[0].profile.points" :name="users[0].username" user="true"/>
+            <card v-if="users[1]" :tipo="users[1].profile.points" :name="users[1].username" user="true"/>
+            <card v-if="users[2]" :tipo="users[2].profile.points" :name="users[2].username" user="true"/>
+            <card v-if="users[3]" :tipo="users[3].profile.points" :name="users[3].username" user="true"/>
+        </div>
+        <div class="d-flex ml-5">
+          <card v-if="results[4]" :tipo="results[4].product_type" :name="results[4].name" :img="results[4].url_image"/>
+          <card v-if="results[5]" :tipo="results[5].product_type" :name="results[5].name" :img="results[5].url_image"/>
+          <card v-if="results[6]" :tipo="results[6].product_type" :name="results[6].name" :img="results[6].url_image"/>
+          <card v-if="results[7]" :tipo="results[7].product_type" :name="results[7].name" :img="results[7].url_image"/>
 
-      <card v-if="users[4]" :tipo="users[4].profile.points" :name="users[4].username" user="true"/>
-      <card v-if="users[5]" :tipo="users[5].profile.points" :name="users[5].username" user="true"/>
-      <card v-if="users[6]" :tipo="users[6].profile.points" :name="users[6].username" user="true"/>
-      <card v-if="users[7]" :tipo="users[7].profile.points" :name="users[7].username" user="true"/>
+          <card v-if="users[4]" :tipo="users[4].profile.points" :name="users[4].username" user="true"/>
+          <card v-if="users[5]" :tipo="users[5].profile.points" :name="users[5].username" user="true"/>
+          <card v-if="users[6]" :tipo="users[6].profile.points" :name="users[6].username" user="true"/>
+          <card v-if="users[7]" :tipo="users[7].profile.points" :name="users[7].username" user="true"/>
 
-    </div>
-    <div class="d-flex ml-5">
-      <card v-if="results[8]" :tipo="results[8].product_type" :name="results[8].name" :img="results[8].url_image"/>
-      <card v-if="results[9]" :tipo="results[0].product_type" :name="results[9].name" :img="results[9].url_image"/>
+        </div>
+        <div class="d-flex ml-5">
+          <card v-if="results[8]" :tipo="results[8].product_type" :name="results[8].name" :img="results[8].url_image"/>
+          <card v-if="results[9]" :tipo="results[0].product_type" :name="results[9].name" :img="results[9].url_image"/>
 
-      <card v-if="users[8]" :tipo="users[8].profile.points" :name="users[8].username" user="true"/>
-      <card v-if="users[9]" :tipo="users[9].profile.points" :name="users[9].username" user="true"/>
+          <card v-if="users[8]" :tipo="users[8].profile.points" :name="users[8].username" user="true"/>
+          <card v-if="users[9]" :tipo="users[9].profile.points" :name="users[9].username" user="true"/>
+        </div>
+      </div>
     </div>
     <h3 v-if="!results[0] && !users[0] && pesquisou" class="text-secondary mt-5"> Nenhum resultado encontrado :(</h3>
   </div>

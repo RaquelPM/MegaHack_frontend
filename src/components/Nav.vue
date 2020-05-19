@@ -9,8 +9,8 @@
         <b-button id="button" v-b-toggle.sidebar-cadastro class="bg-white font-weight-bold px-4 border-0 ml-4" >Cadastre-se</b-button>
         <b-button v-b-toggle.sidebar-login class="bg-transparent text-white font-weight-bold ml-2 border-0 px-4">Login</b-button>
       </div>
-      <div class="w-100 justify-content-end d-flex">
-        <img v-on:click="home" class="mr-3" width="70" src="@/static/Ativo 3.png">
+      <div class="w-100  justify-content-end d-flex">
+        <img v-on:click="home" id="checa_aqui_icon" class="mr-3 " width="70" src="@/static/Ativo 3.png">
       </div>
     </b-navbar>
 
@@ -244,5 +244,8 @@ export default {
 }
 #nome{
   cursor:pointer;
+}
+#checa_aqui_icon{
+  cursor: pointer;
 }
 </style>

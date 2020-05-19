@@ -40,10 +40,10 @@ export default{
 
         get_data("users/?order=relevance")
         .then(resp=>{
-        this.users=resp.results
-        console.log(this.users)
+            this.users=resp.results
+            console.log(this.users)
         })
-        .catch(error=>alert(error.message))
+        .catch(error=>console.log(error.message))
     }
 }
 </script>
