@@ -45,6 +45,7 @@ import {
 } from 'bootstrap-vue'
 import reviews from '@/components/reviews'
 import histviews from '@/components/histview'
+import router from '@/routes.js'
 
 export default{
     components:{
@@ -76,7 +77,7 @@ export default{
         },
         Deslogar(){
             localStorage.removeItem('Token');
-            window.location.reload();
+            router.push({name:'Home'})
         }
     },
     created(){

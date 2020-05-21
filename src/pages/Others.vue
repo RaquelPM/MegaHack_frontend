@@ -87,14 +87,12 @@ import { get_data, get_data_with} from '@/fetchs.js'
             })
             .catch(error=>alert(error.message))
 
-            if(localStorage.getItem('Token')){
                 get_data_with("users/self/")
                     .then(resp=>{
                     this.self=resp
                     this.pesquisou=true;
                     })
                     .catch(error=>alert(error.message))
-            }
         },
         methods:{
             sim(){
